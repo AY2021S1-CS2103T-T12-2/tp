@@ -15,12 +15,14 @@ import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SalesBook;
+import seedu.address.model.SalesTimeBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalIndexes;
 import seedu.address.testutil.TypicalPersons;
 
 public class ArchiveCommandTest {
     private Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new SalesBook(),
+            new SalesTimeBook(),
             new IngredientBook(), new UserPrefs());
 
     @Test

@@ -66,7 +66,12 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'tCheck.jar'
 }
+
+run {
+    enableAssertions = true
+}
+
 
 defaultTasks 'clean', 'test'

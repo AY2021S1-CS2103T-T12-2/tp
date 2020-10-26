@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "s:SetCommand" as SetCommand LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":IngredientBook" as IngredientBook MODEL_COLOR
+participant ":UniqueIngredientList" as UniqueIngredientList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(i-set i/Milk m/100)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(i-set i/Milk m/100)
+activate AddressBookParser
+
+create SetCommand
+AddressBookParser -> SetCommand
+activate SetCommand
+
+SetCommand --> AddressBookParser
+deactivate SetCommand
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SetCommand : execute()
+activate SetCommand
+
+SetCommand -> Model : execute()
+
+activate Model
+
+Model -> IngredientBook : setIngredient(target, newAmount)
+activate IngredientBook
+
+IngredientBook -> UniqueIngredientList :setIngredient(target, newAmount)
+activate UniqueIngredientList
+
+UniqueIngredientList --> IngredientBook :
+deactivate UniqueIngredientList
+
+IngredientBook --> Model
+deactivate IngredientBook
+
+Model --> SetCommand
+deactivate Model
+
+SetCommand --> LogicManager : result
+deactivate SetCommand
+SetCommand -[hidden]-> LogicManager : result
+destroy SetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

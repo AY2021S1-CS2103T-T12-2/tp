@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +22,6 @@ public class SetCommand extends Command {
 
     public static final String COMMAND_WORD = "i-set";
 
-    public static final String MESSAGE_ARGUMENTS = "Ingredient- %s, Amount- %2$s";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + " :set the ingredient in tCheck."
             + "Parameters: "
             + PREFIX_INGREDIENT
@@ -33,17 +32,18 @@ public class SetCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Ingredient set: %1$s";
     public static final String MESSAGE_NO_CHANGE = "Ingredient level already set.";
-    private final Ingredient target;
+    public static final String MESSAGE_NOT_FOUND = "Ingredient not found in ingredient book.";
+    private final IngredientName targetName;
     private final SetIngredientDescriptor setIngredientDescriptor;
 
     /**
      * Constructs a set command with the given ingredient name and amount.
      */
-    public SetCommand(Ingredient target, SetIngredientDescriptor setIngredientDescriptor) {
-        requireNonNull(target);
+    public SetCommand(IngredientName targetName, SetIngredientDescriptor setIngredientDescriptor) {
+        requireNonNull(targetName);
         requireNonNull(setIngredientDescriptor);
 
-        this.target = target;
+        this.targetName = targetName;
         this.setIngredientDescriptor = setIngredientDescriptor;
 
     }
@@ -53,15 +53,34 @@ public class SetCommand extends Command {
         requireNonNull(model);
         List<Ingredient> lastShownList = model.getFilteredIngredientList();
 
-        Ingredient ingredientToEdit = lastShownList.get(lastShownList.indexOf(target));
-        Ingredient updatedIngredient = createSetIngredient(target, setIngredientDescriptor);
+        Ingredient ingredientToEdit = null;
+        boolean isNoChange = false;
 
-        if (!ingredientToEdit.isSameIngredient(updatedIngredient)
-                && model.hasIngredient(updatedIngredient)) {
+        for (Ingredient ingredient : lastShownList) {
+            if (ingredient.getIngredientName().equals(targetName)) {
+                ingredientToEdit = ingredient;
+
+            }
+        }
+
+        if (ingredientToEdit == null) {
+            throw new CommandException(MESSAGE_NOT_FOUND);
+        }
+
+        if (ingredientToEdit.getAmount().equals(setIngredientDescriptor.getAmount().get())) {
+            isNoChange = true;
+        }
+
+        Ingredient updatedIngredient = createSetIngredient(ingredientToEdit, setIngredientDescriptor);
+
+        if (isNoChange) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
+
         model.setIngredient(ingredientToEdit, updatedIngredient);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedIngredient));
     }
 
@@ -85,7 +104,7 @@ public class SetCommand extends Command {
 
         SetCommand e = (SetCommand) other;
 
-        return target.equals(e.target)
+        return targetName.equals(e.targetName)
                 && setIngredientDescriptor.equals(e.setIngredientDescriptor);
     }
 

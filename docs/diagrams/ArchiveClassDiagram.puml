@@ -1,0 +1,42 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface Model <<Interface>>
+Class AddressBook
+Class Model
+Class ModelManager
+
+Class Person
+Class Address
+Class Name
+Class Phone
+Class ArchiveStatus
+Class UniquePersonList
+Class ObservableList
+
+Class Tag
+
+}
+
+ModelManager ..|> Model
+ModelManager -> "1" AddressBook
+
+AddressBook -> "1" UniquePersonList
+UniquePersonList -> "2" ObservableList
+ObservableList -down-> "*" Person
+Person *-down-> "1" Name
+Person *-> "2" Phone
+Person *-> "1" Address
+Person *-down-> "1" ArchiveStatus
+Person .down.> ArchiveStatus
+Person *-down-> "*" Tag
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+
+
+@enduml

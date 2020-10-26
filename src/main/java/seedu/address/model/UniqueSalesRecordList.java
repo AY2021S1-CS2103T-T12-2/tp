@@ -69,6 +69,8 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
             throw new SalesRecordNotFoundException();
         }
 
+        assert index > -1;
+
         internalList.set(index, newEntry); // replace with the new entry
     }
 
@@ -77,6 +79,8 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
         if (index == -1) {
             throw new SalesRecordNotFoundException();
         }
+
+        assert index > -1;
 
         return internalList.get(index);
     }
@@ -198,6 +202,5 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
     public int hashCode() {
         return internalList.hashCode();
     }
-
 
 }

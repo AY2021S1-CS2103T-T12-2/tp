@@ -1,0 +1,19 @@
+@startuml
+start
+:User starts tCheck;
+
+:User executes
+unarchive command
+(with the person's INDEX);
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([is archived])
+    :Unarchive person;
+else ([else])
+    :tCheck displays
+    error message;
+endif
+stop
+@enduml

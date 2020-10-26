@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Find the matching ingredient in IngredientBook;
+    :Show the ingredient name and level to the user;
+else ([else])
+    : Show an error message;
+endif
+stop
+@enduml

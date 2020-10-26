@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPM;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Drink;
 import seedu.address.model.Model;
+import seedu.address.model.UniqueSalesRecordList;
 
 
 /**
@@ -44,7 +46,9 @@ public class SalesUpdateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.overwrite(sales);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSalesBook()));
+        LocalDate time = LocalDate.now();
+        UniqueSalesRecordList temp = model.getSalesBook().getRecord();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

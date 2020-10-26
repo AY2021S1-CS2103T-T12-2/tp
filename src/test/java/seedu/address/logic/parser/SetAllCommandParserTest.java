@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOBA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BROWN_SUGAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OOLONG_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -19,7 +20,8 @@ class SetAllCommandParserTest {
     private static final String MILK_AMOUNT = " " + PREFIX_MILK + "10 ";
     private static final String PEARL_AMOUNT = " " + PREFIX_PEARL + "10 ";
     private static final String BOBA_AMOUNT = " " + PREFIX_BOBA + "10 ";
-    private static final String OOLONG_TEA_AMOUNT = " " + PREFIX_OOLONG_TEA + "10 ";
+    private static final String BLACK_TEA_AMOUNT = " " + PREFIX_BLACK_TEA + "10 ";
+    private static final String GREEN_TEA_AMOUNT = " " + PREFIX_GREEN_TEA + "10 ";
     private static final String BROWN_SUGAR_AMOUNT = " " + PREFIX_BROWN_SUGAR + "10 ";
 
     private static final String MESSAGE_INVALID_FORMAT =
@@ -29,14 +31,14 @@ class SetAllCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // only field specified
         assertParseFailure(parser, MILK_AMOUNT, MESSAGE_INVALID_FORMAT);
 
-        // no field specified
+        // all but one fields are specified
         assertParseFailure(parser, MILK_AMOUNT + PEARL_AMOUNT
-                + BOBA_AMOUNT + OOLONG_TEA_AMOUNT , MESSAGE_INVALID_FORMAT);
+                + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT, MESSAGE_INVALID_FORMAT);
 
-        // no index and no field specified
+        // empty input
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
@@ -45,25 +47,28 @@ class SetAllCommandParserTest {
 
         // invalid number being parsed as preamble
         assertParseFailure(parser, "0" + MILK_AMOUNT
-                + PEARL_AMOUNT + BOBA_AMOUNT + OOLONG_TEA_AMOUNT + BROWN_SUGAR_AMOUNT, MESSAGE_INVALID_FORMAT);
+                + PEARL_AMOUNT + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "some random string" + MILK_AMOUNT
-                + PEARL_AMOUNT + BOBA_AMOUNT + OOLONG_TEA_AMOUNT + BROWN_SUGAR_AMOUNT, MESSAGE_INVALID_FORMAT);
+                + PEARL_AMOUNT + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "i/ string" + MILK_AMOUNT
-                + PEARL_AMOUNT + BOBA_AMOUNT + OOLONG_TEA_AMOUNT + BROWN_SUGAR_AMOUNT, MESSAGE_INVALID_FORMAT);
+                + PEARL_AMOUNT + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT,
+                MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
 
         String userInput = MILK_AMOUNT + PEARL_AMOUNT
-                + BOBA_AMOUNT + OOLONG_TEA_AMOUNT + BROWN_SUGAR_AMOUNT;
+                + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT;
 
         SetAllCommand expectedCommand = new SetAllCommand(new Amount("10"), new Amount("10"),
-                new Amount("10"), new Amount("10"), new Amount("10"));
+                new Amount("10"), new Amount("10"), new Amount("10"), new Amount("10"));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

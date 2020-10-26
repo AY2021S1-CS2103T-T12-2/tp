@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SalesUpdateCommandParser" as SalesUpdateCommandParser LOGIC_COLOR
+participant "s:SalesUpdateCommand" as SalesUpdateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":SalesBook" as SalesBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute(salesUpdate)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(salesUpdate)
+activate AddressBookParser
+
+create SalesUpdateCommandParser
+AddressBookParser -> SalesUpdateCommandParser
+activate SalesUpdateCommandParser
+
+SalesUpdateCommandParser --> AddressBookParser
+deactivate SalesUpdateCommandParser
+
+AddressBookParser -> SalesUpdateCommandParser : parse(arguments)
+activate SalesUpdateCommandParser
+
+create SalesUpdateCommand
+SalesUpdateCommandParser -> SalesUpdateCommand : SalesUpdateCommand(sales)
+activate SalesUpdateCommand
+
+SalesUpdateCommand -> SalesUpdateCommandParser
+deactivate SalesUpdateCommand
+
+SalesUpdateCommandParser -> AddressBookParser : s
+deactivate SalesUpdateCommandParser
+
+SalesUpdateCommandParser -[hidden]-> AddressBookParser : s
+destroy SalesUpdateCommandParser
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SalesUpdateCommand : execute()
+activate SalesUpdateCommand
+
+SalesUpdateCommand -> Model : overwrite(sales)
+activate Model
+
+Model -> SalesBook : overwrite(sales)
+activate SalesBook
+
+SalesBook --> Model :
+deactivate SalesBook
+
+Model --> SalesUpdateCommand :
+deactivate Model
+
+create CommandResult
+SalesUpdateCommand -> CommandResult : CommandResult(message)
+activate CommandResult
+
+CommandResult -> SalesUpdateCommand
+deactivate CommandResult
+
+SalesUpdateCommand -> LogicManager : result
+deactivate SalesUpdateCommand
+
+SalesUpdateCommand -[hidden]-> LogicManager : result
+destroy SalesUpdateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

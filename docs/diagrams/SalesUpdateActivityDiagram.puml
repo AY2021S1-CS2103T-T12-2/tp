@@ -1,0 +1,27 @@
+@startuml
+start
+:User executes command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid])
+    :Parse the command;
+else ([else])
+    :Display error message;
+    stop
+endif
+
+if () then ([salesBook has been initialized])
+    :Overwrite the sales data
+    for the given drink types;
+else ([else])
+    :Set the sales data for
+    the given drink types and
+    set the rest to 0;
+endif
+
+:Display success message;
+
+stop
+@enduml

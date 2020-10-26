@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static seedu.address.testutil.TypicalIngredients.getTypicalIngredientBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
@@ -12,7 +13,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.IngredientBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIngredientBook;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -26,7 +29,12 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonSalesBookStorage salesBookStorage = new JsonSalesBookStorage(getTempFilePath("sb"));
+        JsonSalesTimeBookStorage salesTimeBookStorage = new JsonSalesTimeBookStorage(getTempFilePath("stb"));
+        JsonIngredientBookStorage ingredientBookStorage = new JsonIngredientBookStorage(getTempFilePath("ib"));
+        storageManager = new StorageManager(addressBookStorage, salesBookStorage, salesTimeBookStorage,
+                userPrefsStorage,
+                ingredientBookStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -64,5 +72,24 @@ public class StorageManagerTest {
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
+
+    @Test
+    public void ingredientBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonIngredientBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonIngredientBookStorageTest} class.
+         */
+        IngredientBook original = getTypicalIngredientBook();
+        storageManager.saveIngredientBook(original);
+        ReadOnlyIngredientBook retrieved = storageManager.readIngredientBook().get();
+        assertEquals(original, new IngredientBook(retrieved));
+    }
+
+    @Test
+    public void getIngredientBookFilePath() {
+        assertNotNull(storageManager.getIngredientBookFilePath());
+    }
+
 
 }

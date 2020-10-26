@@ -28,6 +28,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new SalesBook(), modelManager.getSalesBook());
+        assertEquals(new SalesTimeBook(), modelManager.getSalesTimeBook());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
     }
 
@@ -138,6 +139,7 @@ public class ModelManagerTest {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
         SalesBook salesBook = new SalesBook();
+        SalesTimeBook salesTimeBook = new SalesTimeBook();
         IngredientBook ingredientBook = new IngredientBook();
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
@@ -151,9 +153,9 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, salesBook,
+        modelManager = new ModelManager(addressBook, salesBook, salesTimeBook,
                 ingredientBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, salesBook,
+        ModelManager modelManagerCopy = new ModelManager(addressBook, salesBook, salesTimeBook,
                 ingredientBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -167,17 +169,17 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, salesBook,
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, salesBook, salesTimeBook,
                 ingredientBook, userPrefs)));
 
         // different salesBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentSalesBook,
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentSalesBook, salesTimeBook,
                 ingredientBook, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, salesBook,
+        assertFalse(modelManager.equals(new ModelManager(addressBook, salesBook, salesTimeBook,
                 ingredientBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -186,7 +188,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, salesBook,
+        assertFalse(modelManager.equals(new ModelManager(addressBook, salesBook, salesTimeBook,
                 ingredientBook, differentUserPrefs)));
     }
 }

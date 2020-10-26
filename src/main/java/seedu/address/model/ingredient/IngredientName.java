@@ -15,7 +15,7 @@ public class IngredientName {
                     + " and it should not be blank";
 
     public static final String[] INGREDIENTS = new String[]{"Milk",
-        "Pearl", "Boba", "Oolong Tea", "Brown Sugar"};
+        "Pearl", "Boba", "Black Tea", "Green Tea", "Brown Sugar"};
 
 
     public final String ingredientName;

@@ -1,0 +1,9 @@
+{
+  "ingredients" : [ {
+    "ingredientName" : "Milk",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Ingredient with invalid amount field",
+    "amount" : "948asdf2"
+  }]
+}

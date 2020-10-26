@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SalesBook;
 import seedu.address.model.SalesRecordEntry;
+import seedu.address.model.SalesTimeBook;
 import seedu.address.model.UserPrefs;
 
 public class SalesListCommandTest {
@@ -24,9 +25,9 @@ public class SalesListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
+        model = new ModelManager(getTypicalAddressBook(), new SalesBook(), new SalesTimeBook(),
                 new IngredientBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(),
+        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(), model.getSalesTimeBook(),
                 model.getIngredientBook(), new UserPrefs());
     }
 
@@ -40,7 +41,7 @@ public class SalesListCommandTest {
         SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 30);
         List<SalesRecordEntry> newList = Collections.singletonList(entry);
         model.getSalesBook().setRecord(newList);
-        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(),
+        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(), model.getSalesTimeBook(),
                 model.getIngredientBook(), new UserPrefs());
         String expectedMessage = String.format(SalesListCommand.MESSAGE_SUCCESS, model.getSalesBook());
         assertCommandSuccess(new SalesListCommand(), model, expectedMessage, expectedModel);

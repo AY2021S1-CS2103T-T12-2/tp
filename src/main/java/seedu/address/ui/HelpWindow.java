@@ -36,7 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "entered.\n"
             + "i-list: Prints the ingredient levels for all ingredient types retrieved from the database.\n"
             + "s-list: Shows a list of all types of drinks sold for the current day.\n"
-            + "s-set: A/NUM B/NUM C/NUM ...: Asks the user to enter the number of each type of drink sold for the "
+            + "s-update A/NUM B/NUM C/NUM ...: Asks the user to enter the number of each type of drink sold for the "
             + "current day.\n"
             + "help: Displays a brief explanation of the list of commands, and a link to the help page, "
             + "which is the user guide.\n"

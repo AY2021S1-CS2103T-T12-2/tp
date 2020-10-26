@@ -35,7 +35,8 @@ class IngredientNameTest {
         assertTrue(IngredientName.isValidIngredientName("Milk"));
         assertTrue(IngredientName.isValidIngredientName("Boba"));
         assertTrue(IngredientName.isValidIngredientName("Pearl"));
+        assertTrue(IngredientName.isValidIngredientName("Black Tea"));
+        assertTrue(IngredientName.isValidIngredientName("Green Tea"));
         assertTrue(IngredientName.isValidIngredientName("Brown Sugar"));
-        assertTrue(IngredientName.isValidIngredientName("Oolong Tea"));
     }
 }

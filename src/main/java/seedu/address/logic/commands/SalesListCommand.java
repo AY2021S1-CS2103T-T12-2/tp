@@ -16,8 +16,7 @@ public class SalesListCommand extends Command {
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed the sales that has been recorded.\n"
-            + "This is the current record now: \n\n%s";
+    public static final String MESSAGE_SUCCESS = "Listed the sales that has been recorded.";
 
     public static final String MESSAGE_NO_RECORD_SUCCESS = "You have not recorded any sales yet. Use "
             + SalesUpdateCommand.COMMAND_WORD + " to update the sales record.";
@@ -36,7 +35,7 @@ public class SalesListCommand extends Command {
         if (model.isEmptySalesBook()) {
             return new CommandResult(MESSAGE_NO_RECORD_SUCCESS);
         } else {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSalesBook()));
+            return new CommandResult(MESSAGE_SUCCESS);
         }
     }
 

@@ -20,6 +20,7 @@ Class Person
 Class Address
 Class Name
 Class Phone
+Class Emergency
 Class UniquePersonList
 }
 
@@ -41,9 +42,10 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Address
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Emergency
+Person *--> "1" Address
 Person *--> "*" Tag
 
 Name -[hidden]right-> Phone

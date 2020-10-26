@@ -19,13 +19,14 @@ public class IngredientBook implements ReadOnlyIngredientBook {
     private final UniqueIngredientList ingredients;
 
 
+
     /*
-     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
-     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
-     *
-     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
-     *   among constructors.
-     */
+    * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+    * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+    *
+    * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+    *   among constructors.
+    */
     {
         ingredients = new UniqueIngredientList();
     }
@@ -34,7 +35,7 @@ public class IngredientBook implements ReadOnlyIngredientBook {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an AddressBook using the Ingredients in the {@code toBeCopied}
      */
     public IngredientBook(ReadOnlyIngredientBook toBeCopied) {
         this();
@@ -68,6 +69,14 @@ public class IngredientBook implements ReadOnlyIngredientBook {
     public void setIngredient(Ingredient target, Ingredient newAmount) {
         requireAllNonNull(target, newAmount);
         ingredients.setIngredient(target, newAmount);
+    }
+
+    /**
+     * Adds an ingredient to the ingredient book.
+     * The ingredient must not already exist in the ingredient book.
+     */
+    public void addIngredient(Ingredient p) {
+        ingredients.add(p);
     }
 
     /**

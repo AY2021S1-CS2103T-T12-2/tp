@@ -1,0 +1,7 @@
+{
+  "ingredients" : [ {
+    "ingredientName" : "Ingredient with invalid name field: Ha!ns Mu@ster",
+    "amount" : "0"
+  } ]
+}
+

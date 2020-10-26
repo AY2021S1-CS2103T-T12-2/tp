@@ -6,8 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Wraps all data related to drink sales at the sales-book level
@@ -15,8 +17,9 @@ import javafx.collections.ObservableList;
  */
 public class SalesBook implements ReadOnlySalesBook {
 
-    // private Map<Drink, Integer> record; // TODO: change to List<SalesRecord>
     private UniqueSalesRecordList record;
+
+    private final Logger logger = LogsCenter.getLogger(SalesBook.class);
 
     public SalesBook() {
         record = new UniqueSalesRecordList();
@@ -53,7 +56,25 @@ public class SalesBook implements ReadOnlySalesBook {
      */
     public void setRecord(Map<Drink, Integer> sales) {
         requireNonNull(sales);
+        assert !sales.isEmpty();
+        logger.fine("SalesBook is being initialised with the first user input.");
         record.setSalesRecord(sales);
+        assert !record.isEmpty();
+    }
+
+    /**
+     * Adds a salesRecordEntry to the salesbook.
+     */
+    public void addSalesRecordEntry(SalesRecordEntry p) {
+        record.add(p);
+    }
+
+    /**
+     * Returns true if a salesRecordEntry with the same identity as {@code salesRecordEntry} exists in the record.
+     */
+    public boolean hasSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
+        requireNonNull(salesRecordEntry);
+        return record.contains(salesRecordEntry);
     }
 
     public UniqueSalesRecordList getRecord() {
@@ -68,6 +89,8 @@ public class SalesBook implements ReadOnlySalesBook {
      */
     public void overwriteSales(Map<Drink, Integer> sales) {
         requireNonNull(sales);
+        assert !sales.isEmpty();
+        logger.fine("SalesBook is being overwritten with the new user input.");
         HashMap<Drink, Integer> newRecord = new HashMap<>();
         // for all the sales items in sales, overwrite them in record
         for (Drink key : sales.keySet()) {
@@ -78,6 +101,7 @@ public class SalesBook implements ReadOnlySalesBook {
             newRecord.put(key, changedValue.get());
         }
         record.setSalesRecord(newRecord);
+        assert !record.isEmpty();
     }
 
     /**
@@ -102,10 +126,8 @@ public class SalesBook implements ReadOnlySalesBook {
 
     @Override
     public String toString() {
-        //return record.toString();
         StringBuilder display = new StringBuilder();
 
-        // record.forEach((k, v) -> display.append(k.getName() + " (" + k + ") : " + v + "\n"));
         record.forEach(x -> display.append(x + "\n"));
 
         return display.toString();

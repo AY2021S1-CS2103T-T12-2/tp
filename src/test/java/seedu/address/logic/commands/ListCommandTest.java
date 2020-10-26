@@ -12,6 +12,7 @@ import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SalesBook;
+import seedu.address.model.SalesTimeBook;
 import seedu.address.model.UserPrefs;
 
 /**
@@ -24,9 +25,9 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
+        model = new ModelManager(getTypicalAddressBook(), new SalesBook(), new SalesTimeBook(),
                 new IngredientBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(),
+        expectedModel = new ModelManager(model.getAddressBook(), model.getSalesBook(), new SalesTimeBook(),
                 model.getIngredientBook(), new UserPrefs());
     }
 

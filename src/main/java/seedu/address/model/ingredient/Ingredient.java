@@ -94,7 +94,8 @@ public class Ingredient {
                 .append(getIngredientName())
                 .append(", ")
                 .append(" Amount: ")
-                .append(getAmount());
+                .append(getAmount())
+                .append("\n");
         return builder.toString();
 
     }

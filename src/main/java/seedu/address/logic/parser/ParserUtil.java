@@ -129,6 +129,18 @@ public class ParserUtil {
         return new Amount(trimmedAmount);
     }
     /**
+     * Parse a string representing ingredient into an ingredient name.
+     */
+    public static IngredientName parseIngredientName(String ingredient) throws ParseException {
+        requireNonNull(ingredient);
+        String trimmedIngredient = ingredient.trim();
+        if (!IngredientName.isValidIngredientName(trimmedIngredient)) {
+            throw new ParseException(MESSAGE_INVALID_INGREDIENT_NAME);
+        }
+        return new IngredientName(trimmedIngredient);
+    }
+
+    /**
      * Parse a string representing ingredient into an ingredient.
      */
     public static Ingredient parseIngredient(String ingredient) throws ParseException {

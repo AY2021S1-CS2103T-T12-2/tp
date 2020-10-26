@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
-    private SalesResultDisplay salesResultDisplay;
+    private SalesRecordListPanel salesRecordListPanel;
     private IngredientResultDisplay ingredientResultDisplay;
     private HelpWindow helpWindow;
 
@@ -50,7 +50,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane salesResultDisplayPlaceholder;
+    private StackPane salesRecordListPanelPlaceholder;
 
     @FXML
     private StackPane ingredientResultDisplayPlaceholder;
@@ -118,8 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        salesResultDisplay = new SalesResultDisplay();
-        salesResultDisplayPlaceholder.getChildren().add(salesResultDisplay.getRoot());
+        salesRecordListPanel = new SalesRecordListPanel(logic.getFilteredSalesRecordList());
+        salesRecordListPanelPlaceholder.getChildren().add(salesRecordListPanel.getRoot());
 
         ingredientResultDisplay = new IngredientResultDisplay();
         ingredientResultDisplayPlaceholder.getChildren().add(ingredientResultDisplay.getRoot());
@@ -185,9 +185,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
-            if (commandText.startsWith("s-list")) {
-                salesResultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } else if (commandText.startsWith("i-list")) {
+            if (commandText.startsWith("i-list")) {
                 ingredientResultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());

@@ -8,6 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIngredientBook;
+import seedu.address.model.ReadOnlySalesBook;
+import seedu.address.model.SalesRecordEntry;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.person.Person;
 
@@ -31,16 +34,43 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Returns the SalesBook.
+     *
+     * @see seedu.address.model.Model#getSalesBook()
+     */
+    ReadOnlySalesBook getSalesBook();
+
+    /**
+     * Returns the IngredientBook.
+     *
+     * @see seedu.address.model.Model#getIngredientBook()
+     */
+    ReadOnlyIngredientBook getIngredientBook();
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the filtered list of ingredients */
     ObservableList<Ingredient> getFilteredIngredientList();
 
+    /** Returns an unmodifiable view of the filtered list of sales record entries */
+    ObservableList<SalesRecordEntry> getFilteredSalesRecordList();
+
     /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the user prefs' sales book file path.
+     */
+    Path getSalesBookFilePath();
+
+    /**
+     * Returns the user prefs' ingredient book file path.
+     */
+    Path getIngredientBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

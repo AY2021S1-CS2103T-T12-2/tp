@@ -21,8 +21,6 @@ import seedu.address.model.Drink;
  */
 public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
 
-    private static final int INVALID_INPUT = -1;
-
     /**
      * Parses the given {@code String} of arguments in the context of the SalesUpdateCommand
      * and returns a SalesUpdateCommand object for execution.
@@ -59,6 +57,8 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
         if (drinkCounter == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE));
         }
+
+        assert !sales.isEmpty();
 
         return new SalesUpdateCommand(sales);
     }

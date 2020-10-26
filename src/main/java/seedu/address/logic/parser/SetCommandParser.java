@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetCommand.SetIngredientDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.IngredientName;
 
 /**
  * Parses input arguments and creates a new {@code RemarkCommand} object
@@ -33,7 +33,7 @@ public class SetCommandParser implements Parser<SetCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetCommand.MESSAGE_USAGE));
         }
 
-        Ingredient ingredientToSet = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
+        IngredientName ingredientToSet = ParserUtil.parseIngredientName(argMultimap.getValue(PREFIX_INGREDIENT).get());
 
         SetCommand.SetIngredientDescriptor descriptor = new SetIngredientDescriptor();
 

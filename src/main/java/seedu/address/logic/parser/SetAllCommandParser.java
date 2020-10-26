@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOBA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BROWN_SUGAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_OOLONG_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 
 import java.util.stream.Stream;
@@ -24,10 +25,10 @@ public class SetAllCommandParser implements Parser<SetAllCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MILK, PREFIX_PEARL,
-                        PREFIX_BOBA, PREFIX_OOLONG_TEA, PREFIX_BROWN_SUGAR);
+                        PREFIX_BOBA, PREFIX_BLACK_TEA, PREFIX_GREEN_TEA, PREFIX_BROWN_SUGAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MILK, PREFIX_PEARL, PREFIX_BOBA,
-                PREFIX_OOLONG_TEA, PREFIX_BROWN_SUGAR)
+                PREFIX_BLACK_TEA, PREFIX_GREEN_TEA, PREFIX_BROWN_SUGAR)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetAllCommand.MESSAGE_USAGE));
         }
@@ -35,10 +36,11 @@ public class SetAllCommandParser implements Parser<SetAllCommand> {
         Amount milkAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_MILK).get());
         Amount pearlAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_PEARL).get());
         Amount bobaAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_BOBA).get());
-        Amount oolongTeaAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_OOLONG_TEA).get());
+        Amount blackTeaAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_BLACK_TEA).get());
+        Amount greenTeaAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_GREEN_TEA).get());
         Amount brownSugarAmount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_BROWN_SUGAR).get());
 
-        return new SetAllCommand(milkAmount, pearlAmount, bobaAmount, oolongTeaAmount, brownSugarAmount);
+        return new SetAllCommand(milkAmount, pearlAmount, bobaAmount, blackTeaAmount, greenTeaAmount, brownSugarAmount);
     }
 
     /**

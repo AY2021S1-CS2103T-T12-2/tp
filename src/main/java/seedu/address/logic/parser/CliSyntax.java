@@ -18,7 +18,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_MILK = new Prefix("M/");
     public static final Prefix PREFIX_PEARL = new Prefix("P/");
     public static final Prefix PREFIX_BOBA = new Prefix("B/");
-    public static final Prefix PREFIX_OOLONG_TEA = new Prefix("O/");
+    public static final Prefix PREFIX_BLACK_TEA = new Prefix("L/");
+    public static final Prefix PREFIX_GREEN_TEA = new Prefix("G/");
     public static final Prefix PREFIX_BROWN_SUGAR = new Prefix("S/");
 
     /* Prefix definitions for drinks */

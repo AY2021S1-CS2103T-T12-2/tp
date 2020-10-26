@@ -25,6 +25,7 @@ import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.SalesBook;
+import seedu.address.model.SalesTimeBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -35,7 +36,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
+    private Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(), new SalesTimeBook(),
             new IngredientBook(), new UserPrefs());
 
     @Test
@@ -48,6 +49,7 @@ public class EditCommandTest {
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
+                        model.getSalesTimeBook(),
                         model.getIngredientBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
@@ -74,6 +76,7 @@ public class EditCommandTest {
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
+                        model.getSalesTimeBook(),
                         model.getIngredientBook(), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
@@ -89,6 +92,7 @@ public class EditCommandTest {
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
+                        model.getSalesTimeBook(),
                         model.getIngredientBook(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -107,6 +111,7 @@ public class EditCommandTest {
 
         Model expectedModel =
                 new ModelManager(new AddressBook(model.getAddressBook()), model.getSalesBook(),
+                        model.getSalesTimeBook(),
                         model.getIngredientBook(), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
