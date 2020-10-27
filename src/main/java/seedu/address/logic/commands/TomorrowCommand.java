@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
+import static java.util.Objects.requireNonNull;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.Model;
 
 public class TomorrowCommand extends Command {
     public static final String COMMAND_WORD = "c-tomorrow";
