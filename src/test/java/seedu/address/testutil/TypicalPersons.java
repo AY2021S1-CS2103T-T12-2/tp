@@ -26,38 +26,38 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withPhone("94351253")
-            .withEmergency("35215349")
+            .withEmergency("85215349")
             .withArchiveStatus("false")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withPhone("98765432")
-            .withEmergency("23456789")
+            .withEmergency("83456789")
             .withArchiveStatus("false")
-            .withTags("owesMoney", "friends").build();
+            .withTags("Friday", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmergency("36525359")
+            .withEmergency("96525359")
             .withArchiveStatus("false")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmergency("3352678")
+            .withEmergency("93526780")
             .withAddress("10th street").withArchiveStatus("false").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmergency("4222849")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822249")
+            .withEmergency("84222849")
             .withAddress("michegan ave").withArchiveStatus("false").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmergency("7242849")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824276")
+            .withEmergency("87242849")
             .withAddress("little tokyo").withArchiveStatus("false").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmergency("2442849")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94825512")
+            .withEmergency("84428491")
             .withAddress("4th street").withArchiveStatus("false").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmergency("4242848")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824249")
+            .withEmergency("94242848")
             .withAddress("little india").withArchiveStatus("false").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmergency("1312848")
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821310")
+            .withEmergency("81317848")
             .withAddress("chicago ave").withArchiveStatus("false").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}

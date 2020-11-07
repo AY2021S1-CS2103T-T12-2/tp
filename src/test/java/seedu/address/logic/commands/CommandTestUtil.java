@@ -28,10 +28,10 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMERGENCY_AMY = "33333333";
-    public static final String VALID_EMERGENCY_BOB = "44444444";
+    public static final String VALID_PHONE_AMY = "88888888";
+    public static final String VALID_PHONE_BOB = "99999999";
+    public static final String VALID_EMERGENCY_AMY = "87654321";
+    public static final String VALID_EMERGENCY_BOB = "98765432";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
