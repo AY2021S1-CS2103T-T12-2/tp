@@ -35,8 +35,8 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("13121534")); // not start form 8 or 9
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("91107866")); // exactly 3 numbers
+        assertTrue(Phone.isValidPhone("91107866")); //
         assertTrue(Phone.isValidPhone("93121534"));
-        assertTrue(Phone.isValidPhone("80967766")); // long phone numbers
+        assertTrue(Phone.isValidPhone("80967766")); // 
     }
 }
