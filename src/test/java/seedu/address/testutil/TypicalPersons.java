@@ -34,7 +34,7 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withEmergency("83456789")
             .withArchiveStatus("false")
-            .withTags("Friday", "friends").build();
+            .withTags("Friday", "").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmergency("96525359")
             .withArchiveStatus("false")
