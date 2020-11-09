@@ -52,8 +52,6 @@ Given below are my contributions to the project.
   * Related PRs: [\#87](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/87), 
   [\#103](https://github.com/AY2021S1-CS2103T-T12-2/tp/pull/103)
    
-* **Testing**: Wrote and updated tests for all the features (except UI-related features) that I have implemented
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=ureshiiying&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
